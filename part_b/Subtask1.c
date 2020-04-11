@@ -19,7 +19,7 @@ int ourFork(){
         if(pid == 0){
             print("Grand child");
 
-            char * args[2] = {"./friend",NULL};		
+            char * args[2] = {"./Subtask2.1",NULL};		
             execvp(args[0],args);
         }
 
