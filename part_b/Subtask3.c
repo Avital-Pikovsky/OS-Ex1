@@ -7,36 +7,37 @@
 
 #define THREE_SECOND 3000000
 
-int ourDaemon(){
+int ourDaemon()
+{
 
-    pid_t pid = fork();
+    pid_t pid = fork();//this fork creats a child process that will be daemon
 
-    if(pid == 0){//Child
+    if (pid == 0)
+    { 
 
-    //Move the root dir, used to not block the file system.
-    chdir("/");
+        //Move the root dir, used to not block the file system.
+        chdir("/");
 
-    //Move the child to another session, so the parent may be closed.
-    setsid();
+        //Move the child to another session, so the parent may be closed.
+        setsid();
 
-    printf("Daemon is running\n");
+        printf("Daemon is running\n");
 
-    //Close output chanels
-    close(stdout);
-    close(stdin);
-    close(stderr);
+        //Close output chanels
+        close(stdout);
+        close(stdin);
+        close(stderr);
 
-    //Open log
-    openlog("Daemon\n", LOG_PID, LOG_DAEMON);
-    syslog(LOG_NOTICE, "Daemon started\n");
-    usleep(THREE_SECOND);
-    syslog(LOG_NOTICE, "Daemon working...\n");
-    usleep(THREE_SECOND);
-    syslog(LOG_NOTICE, "Daemon finished\n");
-
-
+        //Open log
+        openlog("Daemon\n", LOG_PID, LOG_DAEMON);
+        syslog(LOG_NOTICE, "Daemon started\n");
+        usleep(THREE_SECOND);
+        syslog(LOG_NOTICE, "Daemon working...\n");
+        usleep(THREE_SECOND);
+        syslog(LOG_NOTICE, "Daemon finished\n");
     }
-    else printf("Daemon PID %d\n", pid);
+    else
+        printf("Daemon PID %d\n", pid);
 
-   return 0;
+    return 0;
 }

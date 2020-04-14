@@ -1,18 +1,16 @@
 #include "part_b.h"
 #include <stdio.h>
 
-int main()
+int main()//A simple main function that calls subtask1, subtask2 and subtask3 in order 
 {
-
-    printf("********Fork :*********\n");
+    printf("*********************Fork :************************\n");
     ourFork();
 
-    printf("********Clone :*********\n");
+    printf("*********************Clone :************************\n");
     ourClone();
 
-    printf("********Daemon :********\n");
+    printf("***********************Daemon :*********************\n");
     ourDaemon();
-
-
+    
     return 0;
 }
